@@ -1,0 +1,52 @@
+<hr />
+<h2 id="front-matter">Front matter</h2>
+<p>title: "Индивидуальный проект. Отчёт о выполнении №1</p>
+<p>Информационная безопасность" subtitle: " Установка и конфигурация операционной системы на виртуальную машину" author: "Выполнил: Негматуллаев Бежан,</p>
+<p>НФИбд-02-21, 1032217048"</p>
+<h2 id="generic-otions">Generic otions</h2>
+<p>lang: ru-RU toc-title: “Содержание”</p>
+<h2 id="bibliography">Bibliography</h2>
+<p>bibliography: bib/cite.bib csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl</p>
+<h2 id="pdf-output-format">Pdf output format</h2>
+toc: true # Table of contents toc-depth: 2 lof: true # List of figures fontsize: 12pt linestretch: 1.5 papersize: a4 documentclass: scrreprt ## I18n polyglossia polyglossia-lang: name: russian options: - spelling=modern - babelshorthands=true polyglossia-otherlangs: name: english ## I18n babel babel-lang: russian babel-otherlangs: english ## Fonts mainfont: Times New Roman romanfont: Times New Roman sansfont: Times New Roman monofont: Times New Roman mainfontoptions: Ligatures=TeX romanfontoptions: Ligatures=TeX sansfontoptions: Ligatures=TeX,Scale=MatchLowercase monofontoptions: Scale=MatchLowercase,Scale=0.9 ## Biblatex biblatex: true biblio-style: “gost-numeric” biblatexoptions: - parentracker=true - backend=biber - hyperref=auto - language=auto - autolang=other* - citestyle=gost-numeric ## Pandoc-crossref LaTeX customization figureTitle: “Рис.” tableTitle: “Таблица” listingTitle: “Листинг” lofTitle: “Список иллюстраций” lolTitle: “Листинги” ## Misc options indent: true header-includes: -
+<ul>
+<li><h1 id="keep-figures-where-there-are-in-the-text">keep figures where there are in the text</h1>
+<ul>
+<li><h2 id="keep-figures-where-there-are-in-the-text-1"> # keep figures where there are in the text</h2></li>
+</ul></li>
+</ul>
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью первого этапа проекта является установка дистрибутива Kali Linux на вирутальную машину.</p>
+<h1 id="конфигурация-виртуальной-машины">Конфигурация виртуальной машины</h1>
+<p>Первым делом требуется предварительо загрузить сам дистрибутив с официального сайта, после загрузки дистрибутива, открываем приложение VirtualBox, а затем создаем и конфигурируем нвоую виртуальную машину (раздел Машина -&gt; Создать). Даем название виртуальной машине, выбираем тип дистрибутива RedHat.</p>
+<figure>
+<img src="Screens/1.PNG" id="fig:001" style="width:60.0%;height:60.0%" alt="Окно создания новой машины" /><figcaption aria-hidden="true">Окно создания новой машины</figcaption>
+</figure>
+<p>Указываем размер оперативной памяти.</p>
+<h1 id="конфигурация-установки-ос">Конфигурация установки ОС</h1>
+<p>Запускаем виртуальную машину, выбираем Graphical install.</p>
+<figure>
+<img src="Screens/2.PNG" id="fig:005" style="width:60.0%;height:60.0%" alt="Установка" /><figcaption aria-hidden="true">Установка</figcaption>
+</figure>
+<p>Выбираем язык - Русский.</p>
+<figure>
+<img src="Screens/3.PNG" id="fig:006" style="width:60.0%;height:60.0%" alt="Выбор языка системы" /><figcaption aria-hidden="true">Выбор языка системы</figcaption>
+</figure>
+<p>Выбираем имя хоста</p>
+<figure>
+<img src="Screens/4.PNG" id="fig:007" style="width:60.0%;height:60.0%" alt="Выбор имени хоста" /><figcaption aria-hidden="true">Выбор имени хоста</figcaption>
+</figure>
+<p>Выбор основного имени пользователя, имени пользователя и пароля</p>
+<figure>
+<img src="Screens/5.PNG" id="fig:009" style="width:60.0%;height:60.0%" alt="Выбор основного имени пользователя" /><figcaption aria-hidden="true">Выбор основного имени пользователя</figcaption>
+</figure>
+<figure>
+<img src="Screens/6.PNG" id="fig:011" style="width:60.0%;height:60.0%" alt="Пароль" /><figcaption aria-hidden="true">Пароль</figcaption>
+</figure>
+<p>Продолжаем установку</p>
+<p>Далее появляется выбрать дополнительное програмное обеспечение для установки, оставляем все как есть и продолжаем установку</p>
+<figure>
+<img src="Screens/7.PNG" id="fig:016" style="width:60.0%;height:60.0%" alt="Выбор дополнительного ПО" /><figcaption aria-hidden="true">Выбор дополнительного ПО</figcaption>
+</figure>
+<h1 id="заключение">Заключение</h1>
+<p>Был установлен дистрибутив Kali Linux на виртуальную машину.</p>
