@@ -1,0 +1,860 @@
+<hr />
+<h2 id="front-matter">Front matter</h2>
+<p>title: "Отчёт по лабораторной работе №3</p>
+<p>Информационная безопасность" subtitle: “Дискреционное разграничение прав в Linux. Два пользователя” author: "Выполнил: Негматуллаев Бежан Шухратович ,</p>
+<p>НФИбд-02-21, 1032215469"</p>
+<h2 id="generic-otions">Generic otions</h2>
+<p>lang: ru-RU toc-title: “Содержание”</p>
+<h2 id="bibliography">Bibliography</h2>
+<p>bibliography: bib/cite.bib csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl</p>
+<h2 id="pdf-output-format">Pdf output format</h2>
+toc: true # Table of contents toc-depth: 2 lof: true # List of figures fontsize: 12pt linestretch: 1.5 papersize: a4 documentclass: scrreprt ## I18n polyglossia polyglossia-lang: name: russian options: - spelling=modern - babelshorthands=true polyglossia-otherlangs: name: english ## I18n babel babel-lang: russian babel-otherlangs: english ## Fonts mainfont: PT Serif romanfont: PT Serif sansfont: PT Sans monofont: PT Mono mainfontoptions: Ligatures=TeX romanfontoptions: Ligatures=TeX sansfontoptions: Ligatures=TeX,Scale=MatchLowercase monofontoptions: Scale=MatchLowercase,Scale=0.9 ## Biblatex biblatex: true biblio-style: “gost-numeric” biblatexoptions: - parentracker=true - backend=biber - hyperref=auto - language=auto - autolang=other* - citestyle=gost-numeric ## Pandoc-crossref LaTeX customization figureTitle: “Рис.” tableTitle: “Таблица” listingTitle: “Листинг” lofTitle: “Список иллюстраций” lolTitle: “Листинги” ## Misc options indent: true header-includes: -
+<ul>
+<li><h1 id="keep-figures-where-there-are-in-the-text">keep figures where there are in the text</h1>
+<ul>
+<li><h2 id="keep-figures-where-there-are-in-the-text-1"> # keep figures where there are in the text</h2></li>
+</ul></li>
+</ul>
+<h1 id="цель-работы">Цель работы</h1>
+<p>Получение практических навыков работы в консоли с атрибутами файлов для групп пользователей.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной работы</h1>
+<h2 id="атрибуты-файлов">Атрибуты файлов</h2>
+<ol type="1">
+<li>В установленной операционной системе создайте учётную запись пользователя guest (использую учётную запись администратора): useradd guest. Задайте пароль для пользователя guest (использую учётную запись администратора):</li>
+</ol>
+<p><img src="image/1.PNG" id="fig:002" style="width:70.0%;height:70.0%" alt="(рис. 1. useradd guest)" /> <img src="image/2.PNG" id="fig:002" style="width:70.0%;height:70.0%" alt="(рис. 2. passwd guest)" /></p>
+<ol start="2" type="1">
+<li>Аналогично создайте второго пользователя guest2. Добавьте пользователя guest2 в группу guest: gpasswd -a guest2 guest</li>
+</ol>
+<figure>
+<img src="image/3.PNG" id="fig:008" style="width:70.0%;height:70.0%" alt="(рис. 3. gpasswd)" /><figcaption aria-hidden="true">(рис. 3. gpasswd)</figcaption>
+</figure>
+<ol start="3" type="1">
+<li>Осуществите вход в систему от двух пользователей на двух разных консолях: guest на первой консоли и guest2 на второй консоли</li>
+</ol>
+<figure>
+<img src="image/3.PNG" id="fig:010" style="width:70.0%;height:70.0%" alt="(рис. 4. Пользователи)" /><figcaption aria-hidden="true">(рис. 4. Пользователи)</figcaption>
+</figure>
+<ol start="4" type="1">
+<li>Для обоих пользователей командой pwd определите директорию, в которой вы находитесь. Сравните её с приглашениями командной строки. Уточните имя вашего пользователя, его группу, кто входит в неё и к каким группам принадлежит он сам. Определите командами groups guest и groups guest2, в какие группы входят пользователи guest и guest2. Сравните вывод команды groups с выводом команд id -Gn и id -G</li>
+</ol>
+<figure>
+<img src="image/5.PNG" id="fig:013" style="width:70.0%;height:70.0%" alt="(рис. 5. pwd)" /><figcaption aria-hidden="true">(рис. 5. pwd)</figcaption>
+</figure>
+<figure>
+<img src="image/6.PNG" id="fig:013" style="width:70.0%;height:70.0%" alt="(рис. 6. pwd)" /><figcaption aria-hidden="true">(рис. 6. pwd)</figcaption>
+</figure>
+<ol start="5" type="1">
+<li>От имени пользователя guest2 выполните регистрацию пользователя guest2 в группе guest командой newgrp guest</li>
+</ol>
+<figure>
+<img src="image/7.PNG" id="fig:014" style="width:70.0%;height:70.0%" alt="(рис. 7. newgrp guest)" /><figcaption aria-hidden="true">(рис. 7. newgrp guest)</figcaption>
+</figure>
+<ol start="6" type="1">
+<li>От имени пользователя guest измените права директории /home/guest, разрешив все действия для пользователей группы: chmod g+rwx /home/guest. От имени пользователя guest снимите с директории /home/guest/dir1 все атрибуты командой</li>
+</ol>
+<figure>
+<img src="image/8.PNG" id="fig:015" style="width:70.0%;height:70.0%" alt="(рис. 8. g+rwx /home/guest)" /><figcaption aria-hidden="true">(рис. 8. g+rwx /home/guest)</figcaption>
+</figure>
+<h2 id="заполнение-таблицы-3.1">Заполнение таблицы 3.1</h2>
+<ol start="14" type="1">
+<li>Меняя атрибуты у директории dir1 и файла file1 от имени пользователя guest и делая проверку от пользователя guest2, заполните табл. 3.1, определив опытным путём, какие операции разрешены, а какие нет. Если операция разрешена, занесите в таблицу знак «+», если не разрешена, знак «-».</li>
+</ol>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Права директории</td>
+<td>Права файла</td>
+<td>Создание файла</td>
+<td>Удаление файла</td>
+<td>Запись в файл</td>
+<td>Чтение файла</td>
+<td>Смена директории</td>
+<td>Просмотр файлов в директории</td>
+<td>Переимено- вание файла</td>
+<td>Смена атрибутов файла</td>
+</tr>
+<tr class="even">
+<td>d(000)</td>
+<td>(000)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(000)</td>
+<td>(100)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(000)</td>
+<td>(200)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(000)</td>
+<td>(300)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(000)</td>
+<td>(400)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(000)</td>
+<td>(500)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(000)</td>
+<td>(600)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(000)</td>
+<td>(700)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(100)</td>
+<td>(000)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(100)</td>
+<td>(100)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(100)</td>
+<td>(200)</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(100)</td>
+<td>(300)</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(100)</td>
+<td>(400)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(100)</td>
+<td>(500)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(100)</td>
+<td>(600)</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(100)</td>
+<td>(700)</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(200)</td>
+<td>(000)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(200)</td>
+<td>(100)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(200)</td>
+<td>(200)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(200)</td>
+<td>(300)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(200)</td>
+<td>(400)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(200)</td>
+<td>(500)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(200)</td>
+<td>(600)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(200)</td>
+<td>(700)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(300)</td>
+<td>(000)</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(300)</td>
+<td>(100)</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(300)</td>
+<td>(200)</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(300)</td>
+<td>(300)</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(300)</td>
+<td>(400)</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(300)</td>
+<td>(500)</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(300)</td>
+<td>(600)</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(300)</td>
+<td>(700)</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(400)</td>
+<td>(000)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(400)</td>
+<td>(100)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(400)</td>
+<td>(200)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(400)</td>
+<td>(300)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(400)</td>
+<td>(400)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(400)</td>
+<td>(500)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(400)</td>
+<td>(600)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(400)</td>
+<td>(700)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(500)</td>
+<td>(000)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(500)</td>
+<td>(100)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(500)</td>
+<td>(200)</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(500)</td>
+<td>(300)</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(500)</td>
+<td>(400)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(500)</td>
+<td>(500)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(500)</td>
+<td>(600)</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(500)</td>
+<td>(700)</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(600)</td>
+<td>(000)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(600)</td>
+<td>(100)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(600)</td>
+<td>(200)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(600)</td>
+<td>(300)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(600)</td>
+<td>(400)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(600)</td>
+<td>(500)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(600)</td>
+<td>(600)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>d(600)</td>
+<td>(700)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>d(700)</td>
+<td>(000)</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(700)</td>
+<td>(100)</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(700)</td>
+<td>(200)</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(700)</td>
+<td>(300)</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(700)</td>
+<td>(400)</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(700)</td>
+<td>(500)</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="even">
+<td>d(700)</td>
+<td>(600)</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr class="odd">
+<td>d(700)</td>
+<td>(700)</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+</tbody>
+</table>
+<h1 id="вывод">Вывод</h1>
+<p>Были получены практические навыки работы в консоли с группами, закреплены теоретические основы дискреционного разграничения доступа в современных системах с открытым кодом на базе ОС Linux</p>
